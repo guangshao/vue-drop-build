@@ -54,16 +54,7 @@ npm run dev
 │   ├── main.js                     //入口文件
 │   └── router                      //路由配置
 │       └── index.js
-└── static                          //静态数据模版
-    ├── label.1.json
-    ├── label.12.json
-    ├── label.14.json
-    ├── label.17.json
-    ├── label.19.json
-    ├── label.3.json
-    ├── label.5.json
-    ├── label.8.json
-    └── label.json
+└── static                          
 ```
 
 相关插件：
