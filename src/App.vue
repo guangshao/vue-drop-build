@@ -31,5 +31,4 @@ export default {
   padding-right: 15px;
   width: 50%;
 }
-
 </style>
