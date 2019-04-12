@@ -60,7 +60,7 @@ export default {
     // 显示配置按钮并且控件允许被配置
     const item_icon = this.configIcon && this.obj.config.value ? ItemIcon(this, h) : [];
     // 已被绑定name,且require为必填,视为校验字段
-    const validate = !!this.obj.name.value && !!this.obj.require.value;
+    const validate = !!this.obj.prop.value && !!this.obj.require.value;
     // 非 Title Hr P 需要FormItem
     if (['title', 'hr', 'p'].indexOf((this.ele.toLowerCase())) < 0) {
       // 关联的组件判断是否展示
@@ -79,7 +79,7 @@ export default {
         props: {
           label: (this.obj.label.value|| this.ele) + '：',
           // 指定验证name
-          prop: this.obj.name.value || 'temp',
+          prop: this.obj.prop.value || 'temp',
           // 验证规则
           rules: {
             required: validate,
@@ -97,9 +97,9 @@ export default {
         },
         style: {
           // 是否显示行内元素
-          display: this.obj.inlineBlock.value ? 'inline-block' : 'block',
+          // display: this.obj.inlineBlock.value ? 'inline-block' : 'block',
           // 行内元素width为30%
-          width: this.obj.inlineBlock.value ? '33%' : 'auto',
+          // width: this.obj.inlineBlock.value ? '33%' : 'auto',
         }
       };
       return h(

@@ -57,11 +57,16 @@ var getSlotContent = function(slots) {
     })
     return inner
 }
+
 var getStringTypeAttr = function(attributes) {
 
     // value为空的不添加到模板中
     let stringAttr = ''
-    Object.keys(attributes).forEach(key => {
+    for (let key in attributes)  {
+      const cancelArr = ['config', 'visibility', 'require']
+        if (cancelArr.includes(key)) {
+          continue 
+        }
         let attrKey
         let arr = ['text', 'selection', 'icon','ionicon', 'color'] //这些类型都不用加bind
         if (arr.includes(attributes[key].type) || attributes[key].notBind) {
@@ -69,9 +74,9 @@ var getStringTypeAttr = function(attributes) {
         } else {
             attrKey = `:${key}`
         }
-        let attr = attributes[key] ? `${attrKey}="${attributes[key]}"\n` : ''
+        let attr = attributes[key] ? `${attrKey}="${attributes[key].value}"\n` : ''
         stringAttr += attr
-    })
+    }
     return stringAttr
 }
 export { getSlotContent, getTemplate, getStringTypeAttr }

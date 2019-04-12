@@ -31,7 +31,15 @@ export const input = (obj) => {
   //覆盖默认属性
   Object.assign(slots, {})
   const config = Object.assign(inputConf, obj)
-
+  const formItemconfig = {}
+  const formItemAttrArr = ['label', 'prop']
+  formItemAttrArr.forEach(key => {
+    console.log(config[key])
+    if (config[key]) {
+      formItemconfig[key] = JSON.parse(JSON.stringify(config[key]))
+      delete config[key]
+    }
+  })
   //根据组件不同需要做的不同操作
 
 
@@ -50,17 +58,20 @@ export const input = (obj) => {
   //   }
   // }
   let stringAttr = getStringTypeAttr(config)
+  let formItemAttr = getStringTypeAttr(formItemconfig)
   console.log(stringAttr)
-  let template = `<el-input 
+  let template = `<el-form-item ${formItemAttr}>
+                    <el-input 
                       ${stringAttr}>
-                  </el-input>`
+                    </el-input>
+                  </el-form-item>`
   return template
 };
 
 export let inputConf = {
   // 对应数据库内类型
   type: {
-    type: 'String',
+    type: 'text',
     value: 'text'
   },
   // 是否可配置
@@ -70,62 +81,57 @@ export let inputConf = {
   },
   // 控件左侧label内容
   label: {
-    type: 'String',
+    type: 'text',
     value: '输入框'
   },
   placeholder: {
-    type: 'String',
+    type: 'text',
     value: ''
-  },
-  // 是否显示行内元素
-  inlineBlock: {
-    type: 'Boolean',
-    value: false
   },
   // 是否必填
   require: {
-    type: 'Boolean',
+    type: 'text',
     value: true
   },
   // 最大长度
   maxLength: {
-    type: 'Number',
+    type: 'text',
     value: 20
   },
   // 选项内数据
   items: [{ "label_value": null, "label_name": "" }],
   value: {
-    type: 'String',
+    type: 'text',
     value: ''
   },
-  // 表单name
-  name: {
-    type: 'String',
+  // 表单关联字段
+  prop: {
+    type: 'text',
     value: ''
   },
   // 验证错误提示信息
   ruleError: {
-    type: 'String',
+    type: 'text',
     value: '该字段不能为空'
   },
   // 是否关联字段
   relation: {
-    type: 'Boolean',
+    type: 'String',
     value: false
   },
   // 关联字段name
   relation_name: {
-    type: 'String',
+    type: 'text',
     value: ''
   },
   // 关联字段value
   relation_value: {
-    type: 'String',
+    type: 'text',
     value: ''
   },
   // 是否被渲染
   visibility: {
-    type: 'Boolean',
+    type: 'text',
     value: true
   }
 }
